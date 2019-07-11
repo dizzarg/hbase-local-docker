@@ -21,7 +21,7 @@ services:
 
   hbase-master-dc1:
     restart: always
-    image: ifattakhov/hbase-local:2.1.2
+    image: dizzarg/hbase-local:2.1.2
     hostname: "hbase-master-dc1"
     container_name: hbase-master-dc1
     volumes:
@@ -30,7 +30,7 @@ services:
     - 16000:16000
     - 16010:16010
     environment:
-    - HOSTNAME=hbase-master-dc1
+    - MASTER_HOSTNAME=hbase-master-dc1
     - ZOOKEEPER_QUORUM=zookeeper:2181
     - HBASE_ROLE=master
     - REGIONSERVERS=hbase-regionserver-dc1
@@ -45,7 +45,7 @@ services:
 
   hbase-regionserver-dc1:
     restart: always
-    image: ifattakhov/hbase-local:2.1.2
+    image: dizzarg/hbase-local:2.1.2
     hostname: "hbase-regionserver-dc1"
     container_name: hbase-regionserver-dc1
     volumes:
@@ -68,7 +68,7 @@ services:
 
   hbase-master-dc2:
     restart: always
-    image: ifattakhov/hbase-local:2.1.2
+    image: dizzarg/hbase-local:2.1.2
     hostname: "hbase-master-dc2"
     container_name: hbase-master-dc2
     volumes:
