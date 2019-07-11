@@ -3,7 +3,7 @@ This is the simplified version of HBase for development purposes that uses the l
 
 # Supported tags and respective `Dockerfile` links
 
-* `2.1.2`, `latest` [(2.1.2/Dockerfile)](https://github.com/ilshatfattakhov/hbase-local-docker/blob/master/2.1.2/Dockerfile)
+* `2.1.2`, `latest` [(2.1.2/Dockerfile)](https://github.com/dizzarg/hbase-local-docker/blob/master/2.1.2/Dockerfile)
 
 # What is Apache HBase?
 
