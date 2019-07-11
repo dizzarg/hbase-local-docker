@@ -1,5 +1,5 @@
 FROM alpine:latest
-MAINTAINER Ilshat Fattakhov <ifattakhov@fix.ru>
+MAINTAINER Damir Kadyrov <damirikadyrov@gmail.com>
 
 ARG HBASE_VERSION=2.1.2
 
@@ -7,8 +7,8 @@ ENV PATH $PATH:/hbase/bin
 
 ENV JAVA_HOME=/usr
 
-LABEL Description="HBase Dev", \
-      "HBase Version"="$HBASE_VERSION"
+LABEL Description="HBase Dev"
+LABEL HBaseVersion="$HBASE_VERSION"
 
 WORKDIR /
 
@@ -44,7 +44,7 @@ RUN set -euxo pipefail && \
     # jruby-maven jruby-minitest jruby-rdoc jruby-rake jruby-testunit && \
 
 RUN set -euxo pipefail && \
-    wget -q "https://github.com/ilshatfattakhov/hbase-local-docker/raw/master/libhadoop.so" && \
+    wget -q "https://github.com/dizzarg/hbase-local-docker/raw/master/libhadoop.so" && \
     mkdir /hadoop-native && \
     mv libhadoop.so /hadoop-native
 

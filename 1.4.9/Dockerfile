@@ -1,5 +1,5 @@
 FROM alpine:latest
-MAINTAINER Ilshat Fattakhov <ifattakhov@fix.ru>
+MAINTAINER Damir Kadyrov <damirikadyrov@gmail.com>
 
 ARG HBASE_VERSION=1.4.9
 
@@ -7,13 +7,11 @@ ENV PATH $PATH:/hbase/bin
 
 ENV JAVA_HOME=/usr
 
-LABEL Description="HBase Dev", \
-      "HBase Version"="$HBASE_VERSION"
+LABEL Description="HBase Dev"
+LABEL HBaseVersion="$HBASE_VERSION"
 
 WORKDIR /
 
-# bash => entrypoint.sh
-# java => hbase engine
 RUN set -euxo pipefail && \
     apk add --no-cache bash openjdk8-jre-base
 
@@ -33,22 +31,10 @@ RUN set -euxo pipefail && \
     mkdir /data && \
     apk del tar wget
 
-# Needed for HBase 2.0+ hbase-shell
-# asciidoctor solves 'NotImplementedError: fstat unimplemented unsupported or native support failed to load'
-# RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
-#    apk update && \
-#    apk add jruby && \
-#    apk add jruby-irb && \
-#    apk add asciidoctor && \
-#    echo exit | hbase shell
-    # jruby-maven jruby-minitest jruby-rdoc jruby-rake jruby-testunit && \
-
 RUN set -euxo pipefail && \
-    wget -q "https://github.com/ilshatfattakhov/hbase-local-docker/raw/master/libhadoop.so" && \
+    wget -q "https://github.com/dizzarg/hbase-local-docker/raw/master/libhadoop.so" && \
     mkdir /hadoop-native && \
     mv libhadoop.so /hadoop-native
-
-#ADD hbase-daemon.sh /hbase-$VERSION/bin/hbase-daemon.sh
 
 ENV HBASE_DATA_DIR=/data
 ENV HBASE_LOG_DIR=$HBASE_DATA_DIR
@@ -61,8 +47,6 @@ ENV LD_LIBRARY_PATH=/hadoop-native:/usr/lib:/usr/local/lib
 ENV HBASE_ROLE=master
 
 VOLUME ["/data"]
-
-#EXPOSE 16000 16030
 
 WORKDIR /hbase-$HBASE_VERSION
 
